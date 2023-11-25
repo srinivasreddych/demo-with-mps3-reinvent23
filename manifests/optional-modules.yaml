@@ -1,0 +1,21 @@
+name: networking
+path: git::https://github.com/awslabs/idf-modules.git//modules/network/basic-cdk?ref=main
+parameters:
+  - name: internet-accessible
+    value: false
+---
+name: ecr
+path: git::https://github.com/awslabs/autonomous-driving-data-framework.git//modules/optionals/ecr/?ref=main
+parameters:
+  - name: repository-name
+    value: image-extraction-demo-with-mps3
+  - name: image-tag-mutability
+    value: MUTABLE
+---
+name: buckets
+path: git::https://github.com/awslabs/idf-modules.git//modules/storage/buckets?ref=main
+parameters:
+  - name: encryption-type
+    value: SSE
+  - name: retention-type
+    value: DESTROY

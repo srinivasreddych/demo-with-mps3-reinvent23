@@ -1,0 +1,36 @@
+name: image-extraction
+path: modules/pre-processing/image-extraction
+parameters:
+  - name: vpc-id
+    valueFrom:
+      moduleMetadata:
+        group: optionals
+        name: networking
+        key: VpcId
+  - name: private-subnet-ids
+    valueFrom:
+      moduleMetadata:
+        group: optionals
+        name: networking
+        key: PrivateSubnetIds
+  - name: artifacts-bucket-name
+    valueFrom:
+      moduleMetadata:
+        group: optionals
+        name: buckets
+        key: ArtifactsBucketName
+  - name: repository-name
+    valueFrom:
+      moduleMetadata:
+        group: optionals
+        name: ecr
+        key: EcrRepositoryName
+  - name: on-demand-job-queue-arn
+    valueFrom:
+      moduleMetadata:
+        group: core
+        name: batch-compute
+        key: OnDemandJobQueueArn
+  - name: timeout-seconds
+    value: 2000
+

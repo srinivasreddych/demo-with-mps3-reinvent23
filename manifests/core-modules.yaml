@@ -1,0 +1,30 @@
+name: batch-compute
+path: git::https://github.com/awslabs/idf-modules.git//modules/compute/aws-batch?ref=main
+parameters:
+  - name: vpc-id
+    valueFrom:
+      moduleMetadata:
+        group: optionals
+        name: networking
+        key: VpcId
+  - name: private-subnet-ids
+    valueFrom:
+      moduleMetadata:
+        group: optionals
+        name: networking
+        key: PrivateSubnetIds
+  - name: batch-compute
+    value:
+      batch_compute_config:
+        - env_name: ng1
+          compute_type: ON_DEMAND
+          max_vcpus: 256
+          desired_vcpus: 4
+          order: 1
+          instance_types:
+             - m5.4xlarge
+          ebs_config:
+            ebs_size_gbs: 100
+            ebs_type: io1 # standard # https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-volume-types.html
+            ebs_iops: 1000 # Set ONLY if using io as ebs_type
+              
